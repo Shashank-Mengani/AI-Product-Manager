@@ -1,28 +1,3 @@
-// import { constraintAgent } from "../agents/constraintAgent.js"
-// import { runAgent } from "../services/aiCall.js"
-// import { safeJSONParse } from "../utils/parseAgentOutput.js"
-
-// export async function runPivotFlow(oldPlan) {
-//   const pivotPrompt = `
-// You are pivoting this hackathon project to a more unique and impressive version.
-// Keep it feasible within 48 hours.
-
-// Here is the current plan:
-// ${JSON.stringify(oldPlan)}
-
-// Return ONLY JSON:
-// {
-//   "pivotedIdea": "",
-//   "finalMVPFeatures": [],
-//   "featuresToRemove": [],
-//   "whatCanBeMocked": [],
-//   "demoFlow": []
-// }
-// `
-
-//   const pivotRes = await runAgent(constraintAgent, pivotPrompt)
-//   return safeJSONParse(pivotRes)
-// }
 
 import { constraintAgent } from "../agents/constraintAgent.js"
 import { runAgent } from "../services/aiCall.js"
