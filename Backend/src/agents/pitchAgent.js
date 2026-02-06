@@ -1,19 +1,3 @@
-// export const pitchAgent = {
-//     role: "Pitch Generator Agent",
-//     goal: "Generate a hackathon-ready pitch script.",
-//     instructions: `
-//   You are a hackathon pitch coach.
-  
-//   Generate:
-//   1. 30-sec pitch
-//   2. 1-min pitch
-//   3. Problem-Solution-Impact format pitch
-//   4. Demo explanation (step-by-step)
-  
-//   Return in JSON format only.
-//   `
-//   }
-
 
 export const pitchAgent = {
   name: "Pitch Agent",
