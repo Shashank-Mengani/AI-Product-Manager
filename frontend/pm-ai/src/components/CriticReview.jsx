@@ -1,0 +1,70 @@
+
+export default function CriticReview({ data }) {
+  if (!data?.criticReview) return null
+
+  const criticReview = data.criticReview
+
+  const toText = (data, indent = 0) => {
+    const space = " ".repeat(indent)
+
+    if (data === null || data === undefined) {
+      return ""
+    }
+
+    if (typeof data === "string") return `${space}${data}`
+    if (typeof data === "number" || typeof data === "boolean") return `${space}${data}`
+
+    if (Array.isArray(data)) {
+      return data
+        .map((item) => {
+          if (typeof item === "object") {
+            return `${space}-\n${toText(item, indent + 2)}`
+          }
+          return `${space}- ${item}`
+        })
+        .join("\n")
+    }
+
+    if (typeof data === "object") {
+      return Object.entries(data)
+        .map(([key, value]) => {
+          if (typeof value === "object") {
+            return `${space}${key}:\n${toText(value, indent + 2)}`
+          }
+          return `${space}${key}: ${value}`
+        })
+        .join("\n\n")
+    }
+
+    return `${space}${String(data)}`
+  }
+
+  return (
+    <div style={styles.card}>
+      <h2>⚠ Critic Review (Judge Proves)</h2>
+
+      <pre style={styles.pre}>
+        {toText(criticReview)}
+      </pre>
+    </div>
+  )
+}
+
+const styles = {
+  card: {
+    padding: "20px",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    marginTop: "20px",
+    background: "#fff"
+  },
+  pre: {
+    background: "#f9f9f9",
+    padding: "15px",
+    borderRadius: "10px",
+    whiteSpace: "pre-wrap",
+    lineHeight: "1.7",
+    fontSize: "15px",
+    overflowX: "auto"
+  }
+}
