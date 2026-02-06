@@ -1,5 +1,4 @@
 
-
 import { useState } from "react"
 import Navbar from "./components/Navbar"
 import Loader from "./components/Loader"
@@ -12,7 +11,6 @@ export default function App() {
   const [pivotLoading, setPivotLoading] = useState(false)
   const [data, setData] = useState(null)
 
-  // ✅ Global Project State (Shared)
   const [project, setProject] = useState({
     name: "Hackathon Project",
     tagline: "AI-powered hackathon product manager",
