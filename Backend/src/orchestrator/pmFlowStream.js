@@ -19,7 +19,6 @@ export async function runPMFlowStream(userIdea, sendEvent) {
     sendEvent("log", log)
   }
 
-  // Send initial log
   pushLog("User", userIdea)
 
   // IDEA ANALYSIS
@@ -77,7 +76,6 @@ export async function runPMFlowStream(userIdea, sendEvent) {
     JSON.stringify({ ideaAnalysis, finalMVP, techStack })
   )
 
-  // IMPORTANT FIX: if parse fails, fallback to raw string
   const pitch = safeJSONParse(pitchRes) || pitchRes
 
   sendEvent("result", { key: "pitch", data: pitch })
