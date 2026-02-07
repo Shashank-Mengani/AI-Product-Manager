@@ -11,9 +11,13 @@ createRoot(document.getElementById('root')).render(
     <TamboProvider 
     apiKey={import.meta.env.VITE_TAMBO_API_KEY}
     projectId={import.meta.env.VITE_TAMBO_PROJECT_ID}
+    autoGenerateThreadName={false}
     >
       <App />
     </TamboProvider>
   </React.StrictMode>
+
 )
+
+
 

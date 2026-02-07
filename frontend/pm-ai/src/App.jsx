@@ -12,7 +12,6 @@ export default function App() {
   const [pivotLoading, setPivotLoading] = useState(false)
   const [data, setData] = useState(null)
 
-  // ✅ Global Project State (Shared)
   const [project, setProject] = useState({
     name: "Hackathon Project",
     tagline: "AI-powered hackathon product manager",
@@ -87,7 +86,7 @@ export default function App() {
 
   return (
     <div>
-      {/* ✅ Navbar can edit project */}
+  
       <Navbar project={project} setProject={setProject} />
 
       {loading ? (

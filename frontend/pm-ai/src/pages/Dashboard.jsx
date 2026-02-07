@@ -1,5 +1,5 @@
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 import AgentDiscussion from "../components/AgentDiscussion"
 import RoadmapBoard from "../components/RoadmapBoard"
@@ -12,11 +12,22 @@ import NarrationPanel from "../components/NarrationPanel"
 
 import AIAssistantPanel from "../components/AIAssistantPanel"
 import ArchitectureDiagramGenerator from "../components/ArchitectureDiagramGenerator"
+import BugFixAssistant from "../components/BugFixAssistant"
 
-export default function Dashboard({ data, onPivot, pivotLoading }) {
+export default function Dashboard({
+  data,
+  onPivot,
+  pivotLoading,
+  project,
+  setProject
+}) {
   const [assistantOpen, setAssistantOpen] = useState(false)
-  const [projectName, setProjectName] = useState("Hackathon Project")
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  const [bugFixOpen, setBugFixOpen] = useState(false)
+  const [codeReviewOpen, setCodeReviewOpen] = useState(false)
+
+  const [modalVisible, setModalVisible] = useState(false)
 
   const overviewRef = useRef(null)
   const roadmapRef = useRef(null)
@@ -31,20 +42,40 @@ export default function Dashboard({ data, onPivot, pivotLoading }) {
     }
   }
 
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        setBugFixOpen(false)
+        setCodeReviewOpen(false)
+      }
+    }
+
+    window.addEventListener("keydown", handleEsc)
+    return () => window.removeEventListener("keydown", handleEsc)
+  }, [])
+
+  useEffect(() => {
+    if (bugFixOpen || codeReviewOpen) {
+      setTimeout(() => setModalVisible(true), 50)
+    } else {
+      setModalVisible(false)
+    }
+  }, [bugFixOpen, codeReviewOpen])
+
   const menuItems = [
     { label: "Overview", icon: "📌", ref: overviewRef },
     { label: "Roadmap", icon: "🗺", ref: roadmapRef },
     { label: "MVP Plan", icon: "🚀", ref: mvpRef },
     { label: "Tech Stack", icon: "🛠", ref: techRef },
     { label: "Critic Review", icon: "⚠", ref: criticRef },
-    { label: "Pitch Script", icon: "🎤", ref: pitchRef }
+    { label: "Pitch Script", icon: "🎤", ref: pitchRef },
+    { label: "Bug Fix Assistant", icon: "🐞", action: "bugfix" },
   ]
 
   if (!data) return null
 
   return (
     <div style={styles.container}>
-
       <div
         style={{
           ...styles.sidebar,
@@ -59,14 +90,21 @@ export default function Dashboard({ data, onPivot, pivotLoading }) {
           ☰
         </button>
 
-
         <div style={{ marginTop: "10px" }}>
           {menuItems.map((item, idx) => (
             <button
               key={idx}
               style={styles.menuBtn}
               title={item.label}
-              onClick={() => scrollToSection(item.ref)}
+              onClick={() => {
+                if (item.ref) {
+                  scrollToSection(item.ref)
+                } else if (item.action === "bugfix") {
+                  setBugFixOpen(true)
+                } else if (item.action === "review") {
+                  setCodeReviewOpen(true)
+                }
+              }}
             >
               <span style={styles.icon}>{item.icon}</span>
               {sidebarOpen && <span style={styles.label}>{item.label}</span>}
@@ -74,17 +112,14 @@ export default function Dashboard({ data, onPivot, pivotLoading }) {
           ))}
         </div>
 
-
         <button
           style={styles.assistantBtn}
-          title="AI Assistant"
           onClick={() => setAssistantOpen(true)}
         >
           <span style={styles.icon}>🤖</span>
           {sidebarOpen && <span style={styles.label}>AI Assistant</span>}
         </button>
       </div>
-
 
       <div
         style={{
@@ -93,13 +128,9 @@ export default function Dashboard({ data, onPivot, pivotLoading }) {
           marginRight: assistantOpen ? "420px" : "0px"
         }}
       >
- 
+
         <div style={styles.topBar}>
-          <input
-            style={styles.projectInput}
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-          />
+          <h2 style={{ margin: 0 }}>📌 {project.name}</h2>
 
           <button style={styles.openBtn} onClick={() => setAssistantOpen(true)}>
             Open Assistant
@@ -127,7 +158,6 @@ export default function Dashboard({ data, onPivot, pivotLoading }) {
           <TechStack data={data} />
         </div>
 
-   
         <div ref={criticRef}>
           <CriticReview data={data} />
         </div>
@@ -137,13 +167,44 @@ export default function Dashboard({ data, onPivot, pivotLoading }) {
         </div>
       </div>
 
-      
       {assistantOpen && (
         <AIAssistantPanel
           onClose={() => setAssistantOpen(false)}
-          projectName={projectName}
-          setProjectName={setProjectName}
+          project={project}
+          setProject={setProject}
+          data={data}
         />
+      )}
+
+      {bugFixOpen && (
+        <div
+          style={{
+            ...styles.modalOverlay,
+            opacity: modalVisible ? 1 : 0
+          }}
+          onClick={() => setBugFixOpen(false)}
+        >
+          <div
+            style={{
+              ...styles.modalBox,
+              transform: modalVisible ? "scale(1)" : "scale(0.85)",
+              opacity: modalVisible ? 1 : 0
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={styles.modalHeader}>
+              <h2 style={{ margin: 0 }}>🐞 Bug Fix Assistant</h2>
+              <button
+                style={styles.closeBtn}
+                onClick={() => setBugFixOpen(false)}
+              >
+                ✖
+              </button>
+            </div>
+
+            <BugFixAssistant />
+          </div>
+        </div>
       )}
     </div>
   )
@@ -167,7 +228,8 @@ const styles = {
     overflow: "hidden",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    zIndex: 100
   },
 
   toggleBtn: {
@@ -242,15 +304,6 @@ const styles = {
     background: "#fff"
   },
 
-  projectInput: {
-    fontSize: "18px",
-    fontWeight: "700",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    padding: "10px",
-    width: "70%"
-  },
-
   openBtn: {
     padding: "10px 15px",
     borderRadius: "8px",
@@ -260,8 +313,47 @@ const styles = {
     color: "white",
     fontWeight: "bold",
     fontSize: "14px"
+  },
+
+  // MODAL
+  modalOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    background: "rgba(0,0,0,0.5)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 200,
+    transition: "0.3s"
+  },
+
+  modalBox: {
+    width: "90%",
+    maxWidth: "850px",
+    maxHeight: "90vh",
+    overflowY: "auto",
+    background: "black",
+    borderRadius: "14px",
+    padding: "20px",
+    boxShadow: "0px 8px 20px rgba(0,0,0,0.3)",
+    transition: "0.3s ease-in-out"
+  },
+
+  modalHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "15px"
+  },
+
+  closeBtn: {
+    border: "none",
+    background: "transparent",
+    fontSize: "20px",
+    cursor: "pointer",
+    fontWeight: "bold"
   }
 }
-
-
-

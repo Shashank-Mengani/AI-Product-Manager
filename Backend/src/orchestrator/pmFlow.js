@@ -70,7 +70,7 @@ export async function runPMFlow(userIdea) {
     pitchAgent,
     JSON.stringify({ ideaAnalysis, finalMVP, techStack })
   )
-  const pitch = safeJSONParse(pitchRes) || pitchRes
+  const pitch = pitchRes
   logs.push({ agent: "Pitch Agent", message: "Pitch ready 🎤" })
 
   logs.push({ agent: "Narrator Agent", message: "Converting JSON plan into readable product document..." })

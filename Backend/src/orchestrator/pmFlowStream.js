@@ -78,7 +78,7 @@ export async function runPMFlowStream(userIdea, sendEvent) {
   )
 
   // IMPORTANT FIX: if parse fails, fallback to raw string
-  const pitch = safeJSONParse(pitchRes) || pitchRes
+  const pitch = pitchRes
 
   sendEvent("result", { key: "pitch", data: pitch })
   pushLog("Pitch Agent", "Pitch ready 🎤")
@@ -102,7 +102,6 @@ export async function runPMFlowStream(userIdea, sendEvent) {
   sendEvent("result", { key: "narration", data: narration })
   pushLog("Narrator Agent", "Product document ready 📄")
 
-  // FINAL EVENT
   sendEvent("final", {
     logs,
     ideaAnalysis,
