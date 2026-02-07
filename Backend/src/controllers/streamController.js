@@ -7,7 +7,6 @@ export async function streamPMFlow(req, res) {
     return res.status(400).json({ error: "Idea must be at least 10 characters" })
   }
 
-  // SSE headers
   res.setHeader("Content-Type", "text/event-stream")
   res.setHeader("Cache-Control", "no-cache")
   res.setHeader("Connection", "keep-alive")

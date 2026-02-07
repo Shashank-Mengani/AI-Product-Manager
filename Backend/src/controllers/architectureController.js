@@ -8,7 +8,6 @@ export async function generateArchitecture(req, res) {
       return res.status(400).json({ error: "projectData is required" })
     }
 
-    // 🔥 Reduce size: keep only important keys
     const slimData = {
       ideaAnalysis: projectData.ideaAnalysis,
       marketAnalysis: projectData.marketAnalysis,
@@ -29,10 +28,10 @@ Rules:
 Include:
 1) Architecture overview
 2) Frontend modules (React)
-3) Backend modules (Node/Express)
+3) Backend modules (Node/Express, Spring Boot)
 4) API endpoints
 5) MongoDB schema
-6) Auth plan
+6) Authentication plan
 7) Mermaid diagram
 8) Demo flow
 

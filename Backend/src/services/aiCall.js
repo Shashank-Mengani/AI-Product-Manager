@@ -7,7 +7,6 @@ async function getGroqModel() {
 
   const models = await groq.models.list();
 
-  // Prefer best models (priority order)
   const preferredModels = [
     "llama-3.1-8b-instant",
     "llama3-8b-8192"
@@ -15,10 +14,8 @@ async function getGroqModel() {
 
   const available = models.data.map((m) => m.id)
 
-  // Pick the first available preferred model
   cachedModel = preferredModels.find((m) => available.includes(m))
 
-  // fallback: just pick the first available
   if (!cachedModel) cachedModel = available[0]
 
   console.log("✅ Using Groq Model:", cachedModel)

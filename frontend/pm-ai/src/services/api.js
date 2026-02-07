@@ -26,7 +26,6 @@ export async function pivotIdea(currentPlan) {
   return res.json()
 }
 
-// Streaming api call
 export function streamPMFlow(idea, onLog, onResult, onDone, onError) {
   const eventSource = new EventSource(
     `${BASE_URL}/api/stream/pm-stream?idea=${encodeURIComponent(idea)}`
