@@ -29,7 +29,7 @@ ${JSON.stringify(currentPlan, null, 2)}
 
   const pivoted = safeJSONParse(pivotRes)
 
-  // fallback if AI returns plain text
+
   if (!pivoted) {
     return {
       finalMVPFeatures: [
