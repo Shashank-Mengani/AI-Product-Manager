@@ -1,5 +1,5 @@
 
-           ![image alt](https://github.com/Shashank-Mengani/AI-Product-Manager/blob/52c791c59703d8c9cfbb2d8313aa308a48dba46c/Screenshot%20(16).png)
+  
 
 
 
@@ -27,7 +27,8 @@ Tech Stack:
  Backend: Node.js + Express
  AI: Groq LLM + Tambo React SDK
 
-           ![image alt](https://github.com/Shashank-Mengani/AI-Product-Manager/blob/97345d87c65ca9a1bf138c1cc43f7a7cf366933a/Screenshot%20(17).png)
+
+           ![Screenshot of AI Product Manager](https://github.com/Shashank-Mengani/AI-Product-Manager/blob/97345d87c65ca9a1bf138c1cc43f7a7cf366933a/Screenshot%20(17).png)
 
 Tambo (@tambo-ai/react) is integrated in the frontend using TamboProvider and useTambo() to enable:
  AI assistant chat
