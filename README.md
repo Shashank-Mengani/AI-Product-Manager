@@ -22,7 +22,7 @@ It also includes Tambo-powered AI tools like:
 
 
 Tech Stack:
- Frontend: React + Vite
+ Frontend: React + Vite &&
  Backend: Node.js + Express
  AI: Groq LLM + Tambo React SDK
 
