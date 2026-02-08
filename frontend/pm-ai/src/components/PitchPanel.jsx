@@ -42,7 +42,7 @@ export default function PitchPanel({ data }) {
 
   return (
     <div style={styles.card}>
-      <h2>🎤 Pitch Script</h2>
+      <h2>🎤 Presentation Script</h2>
 
       <pre style={styles.pre}>
         {toText(pitch)}
