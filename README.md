@@ -1,9 +1,5 @@
 
-      
-	
-	![PM ai output](output1.png)
-
-HackathonPM.ai
+**HackathonPM.ai**
 
 HackathonPM.ai is an AI-powered Product Manager dashboard that helps hackathon teams convert an idea into a complete product plan instantly.
 
