@@ -1,4 +1,5 @@
-# AI-Product-Manager
+
+
 
 
 HackathonPM.ai
@@ -47,3 +48,6 @@ Setup
 Create .env in frontend:
  tambo api-key && projectId
  Backend Url
+
+
+

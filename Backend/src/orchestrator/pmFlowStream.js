@@ -63,7 +63,6 @@ export async function runPMFlowStream(userIdea, sendEvent) {
   sendEvent("result", { key: "criticReview", data: criticReview })
   pushLog("Critic Agent", "Judge feedback generated ⚠")
 
-  // PITCH
   pushLog("Pitch Agent", "Generating pitch script...")
   const pitchRes = await runAgent(
     pitchAgent,

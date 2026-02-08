@@ -10,7 +10,7 @@ export default function Navbar({ project, setProject }) {
         }
       />
 
-      <p style={styles.text}>AI Product Manager</p>
+      <p style={styles.text}>HackathonPM.ai</p>
     </div>
   )
 }
