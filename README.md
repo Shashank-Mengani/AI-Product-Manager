@@ -1,4 +1,50 @@
 
+      ![image alt](https://github.com/Shashank-Mengani/AI-Product-Manager/blob/e9f940f9adbecf63c0a093e520df045755ee92e5/output(1).png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 
