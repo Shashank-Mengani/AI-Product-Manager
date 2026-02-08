@@ -30,3 +30,7 @@ How Tambo is Used
  1.AI assistant chat
  2.Inline improvements
  3.Bug fixing
+
+SetUp
+frontend
+Backend
