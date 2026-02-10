@@ -61,16 +61,6 @@ This enables:
 ### AI
 - Groq LLM
 
----
-
-## ⚙️ Setup & Installation
-
-### 1️⃣ Backend Setup
-```bash
-cd Backend
-npm install
-npm start
-
 
 
 
