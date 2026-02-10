@@ -33,7 +33,6 @@ The platform includes **Tambo-powered AI tools** such as:
 - 💬 AI Assistant Panel
 - ✍️ Inline Section Improvements
 - 🐞 Bug Fix Assistant
-- 🧠 Code Review & Suggestions
 
 ### Tambo Integration
 The frontend integrates **Tambo (`@tambo-ai/react`)** using:
