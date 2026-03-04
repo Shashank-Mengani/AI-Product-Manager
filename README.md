@@ -1,7 +1,6 @@
 
 ## 🔗 Links
 [🚀 Live App](https://ai-product-manager-frontend.onrender.com)  
-[🎥 Live Demo](https://youtu.be/916nB-DDqws)
 
 
 # HackathonPM.ai 🚀
